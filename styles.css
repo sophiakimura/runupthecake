@@ -1,0 +1,120 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  background: #87CEEB; /* Sky blue */
+  font-family: 'Courier New', monospace;
+}
+
+h1 {
+  color: #fff;
+  font-size: 2rem;
+}
+
+#game-container {
+  position: relative;
+  width: 300px;
+  height: 500px;
+  background: #4CAF50; /* Grass green */
+  border: 2px solid #000;
+  overflow: hidden;
+}
+
+#bird {
+  position: absolute;
+  width: 60px;
+  height: auto;
+  top: 200px;
+  left: 50px;
+}
+
+#obstacle {
+  position: absolute;
+  width: 20px;
+  bottom: -50px; /* Ensures visual alignment with the floor */
+  background: none; /* Candle visuals are dynamically generated */
+}
+
+#candle {
+  position: absolute;
+  width: 20px;
+  height: 200px; /* Increased height for a longer candle */
+  background: repeating-linear-gradient(
+    45deg,
+    #ffffff 0%,
+    #ffffff 10%,
+    #FF0000 10%,
+    #FF0000 20%
+  ); /* Bright red and white striped candle */
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+#wick {
+  position: absolute;
+  top: -10px; /* Wick sits above the candle */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 10px;
+  background: #333; /* Dark wick color */
+  border-radius: 2px;
+}
+
+#flame {
+  position: absolute;
+  top: -35px; /* Leaves a gap for the wick */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 36px; /* Larger flame width */
+  height: 50px; /* Larger flame height */
+  background: radial-gradient(circle, #FFD700 40%, #FF4500 70%, transparent 90%);
+  border-radius: 50%;
+  animation: flicker 0.3s infinite alternate;
+}
+
+#flame::after {
+  content: '';
+  position: absolute;
+  top: 8px; /* Inner flame starts lower */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px; /* Smaller inner flame width */
+  height: 28px; /* Smaller inner flame height */
+  background: radial-gradient(circle, #FFEB3B 50%, #FF4500 90%, transparent 100%);
+  border-radius: 50%;
+  animation: flicker-small 0.3s infinite alternate;
+}
+
+@keyframes flicker {
+  0% {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(-50%) scale(1.2);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateX(-50%) scale(0.9);
+    opacity: 1;
+  }
+}
+
+@keyframes flicker-small {
+  0% {
+    transform: translateX(-50%) scale(0.9);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(-50%) scale(1.3);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateX(-50%) scale(0.8);
+    opacity: 1;
+  }
+}
